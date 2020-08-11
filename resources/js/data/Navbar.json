@@ -1,0 +1,87 @@
+[
+    {
+        "url": "/home",
+        "icon": "icon-home4",
+        "text": "Home",
+        "subItems": [
+            {
+                "url": "/dashboard",
+                "text": "Dashboard"
+            }
+        ]
+    },
+    {
+        "url": "/about",
+        "icon": "icon-home4",
+        "text": "About",
+        "subItems": []
+    },
+    {
+        "url": "/home",
+        "icon": "icon-home4",
+        "text": "Home",
+        "subItems": [
+            {
+                "url": "/dashboard",
+                "text": "Dashboard"
+            }
+        ]
+    },
+    {
+        "url": "/about",
+        "icon": "icon-home4",
+        "text": "About",
+        "subItems": []
+    },
+    {
+        "url": "/home",
+        "icon": "icon-home4",
+        "text": "Home",
+        "subItems": [
+            {
+                "url": "/dashboard",
+                "text": "Dashboard"
+            }
+        ]
+    },
+    {
+        "url": "/about",
+        "icon": "icon-home4",
+        "text": "About",
+        "subItems": []
+    },
+    {
+        "url": "/home",
+        "icon": "icon-home4",
+        "text": "Home",
+        "subItems": [
+            {
+                "url": "/dashboard",
+                "text": "Dashboard"
+            }
+        ]
+    },
+    {
+        "url": "/about",
+        "icon": "icon-home4",
+        "text": "About",
+        "subItems": []
+    },
+    {
+        "url": "/home",
+        "icon": "icon-home4",
+        "text": "Home",
+        "subItems": [
+            {
+                "url": "/dashboard",
+                "text": "Dashboard"
+            }
+        ]
+    },
+    {
+        "url": "/about",
+        "icon": "icon-home4",
+        "text": "About",
+        "subItems": []
+    }
+]
