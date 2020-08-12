@@ -2,7 +2,7 @@
 **this page Entry point of our application
 -->
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ (App()->getLocale() == 'en') ? 'LTR':'RTL' }}">
 
 <head>
     <meta charset="utf-8">
@@ -10,31 +10,38 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
         type="text/css">
-    <link href="/assets/dashboard/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="/assets/dashboard/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/dashboard/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/dashboard/css/layout.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/dashboard/css/components.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/dashboard/css/colors.min.css" rel="stylesheet" type="text/css">
+   <link href="/assets/dashboard/global/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+   @if(App()->getLocale() == "ar")
+    <link href="/assets/dashboard/RTL/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/RTL/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/RTL/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/RTL/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/RTL/css/colors.min.css" rel="stylesheet" type="text/css">
+   @else
+
+     <link href="/assets/dashboard/LTR/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/LTR/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/LTR/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/LTR/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/dashboard/LTR/css/colors.min.css" rel="stylesheet" type="text/css">
+@endif
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="/assets/dashboard/js/main/jquery.min.js"></script>
-    <script src="/assets/dashboard/js/main/bootstrap.bundle.min.js"></script>
-    <script src="/assets/dashboard/js/plugins/loaders/blockui.min.js"></script>
+    <script src="/assets/dashboard/global/js/main/jquery.min.js"></script>
+    <script src="/assets/dashboard/global/js/main/bootstrap.bundle.min.js"></script>
+
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="/assets/dashboard/js/plugins/visualization/d3/d3.min.js"></script>
-    <script src="/assets/dashboard/js/plugins/visualization/d3/d3_tooltip.js"></script>
-    <script src="/assets/dashboard/js/plugins/forms/styling/switchery.min.js"></script>
-    <script src="/assets/dashboard/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-    <script src="/assets/dashboard/js/plugins/ui/moment/moment.min.js"></script>
-    <script src="/assets/dashboard/js/plugins/pickers/daterangepicker.js"></script>
+    <script src="/assets/dashboard/global/js/plugins/visualization/d3/d3.min.js"></script>
+    <script src="/assets/dashboard/global/js/plugins/visualization/d3/d3_tooltip.js"></script>
+  
 
-    <script src="/assets/dashboard/js/app.js"></script>
-    <script src="/assets/dashboard/js/dashboard.js"></script>
-<script>var langs = "{{ App()->getLocale()}}"</script>
+    
+    <script src="/assets/dashboard/RTL/js/app.js"></script>
+
+    <script>var langs = "{{ App()->getLocale()}}"</script>
     <title>Laravel</title>
 
 </head>

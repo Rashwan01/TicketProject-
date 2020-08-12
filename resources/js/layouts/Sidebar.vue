@@ -1,6 +1,6 @@
 <template>
   <!-- Main sidebar -->
-  <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+  <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md" style="position: fixed;right: 0;bottom: 0;">
     <!-- Sidebar mobile toggler -->
     <div class="sidebar-mobile-toggler text-center">
       <a href="#" class="sidebar-mobile-main-toggle">
@@ -23,7 +23,7 @@
             <div class="mr-3">
               <a href="#">
                 <img
-                  src="/assets/dashboard/images/placeholders/placeholder.jpg"
+                  src="/assets/dashboard/global/images/placeholders/placeholder.jpg"
                   width="38"
                   height="38"
                   class="rounded-circle"
@@ -33,7 +33,7 @@
             </div>
 
             <div class="media-body">
-              <div class="media-title font-weight-semibold">Victoria Baker</div>
+              <div class="media-title font-weight-semibold">{{AuthUser  }}</div>
               <div class="font-size-xs opacity-50">
                 <i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
               </div>
@@ -87,8 +87,10 @@ export default {
   data() {
     return {
       NavbarItems: NavbarItems,
+       AuthUser:User.name()
     };
   },
+
   methods: {
     hasSubItems(item) {
       return item.subItems.length > 0;

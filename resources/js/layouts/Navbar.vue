@@ -5,13 +5,13 @@
     <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
       <div class="navbar-brand navbar-brand-md">
         <a href="index.html" class="d-inline-block">
-          <img src="/assets/dashboard/images/logo_light.png" alt />
+          <img src="/assets/dashboard/global/images/logo_light.png" alt />
         </a>
       </div>
 
       <div class="navbar-brand navbar-brand-xs">
         <a href="index.html" class="d-inline-block">
-          <img src="/assets/dashboard/images/logo_icon_light.png" alt />
+          <img src="/assets/dashboard/global/images/logo_icon_light.png" alt />
         </a>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <div class="d-flex flex-1 d-md-none">
       <div class="navbar-brand mr-auto">
         <a href="index.html" class="d-inline-block">
-          <img src="/assets/dashboard/images/logo_dark.png" alt />
+          <img src="/assets/dashboard/global/images/logo_dark.png" alt />
         </a>
       </div>
 
@@ -55,206 +55,48 @@
           <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
             <img
               :src="
-                                $i18n.locale == 'en'
-                                    ? '/assets/dashboard/images/lang/gb.png'
-                                    : '/assets/dashboard/images/lang/ar.png'
+                                currentLang == 'en'
+                                    ? '/assets/dashboard/global/images/lang/gb.png'
+                                    : '/assets/dashboard/global/images/lang/ar.png'
                             "
               class="img-flag mr-2"
               alt
             />
-            {{ $i18n.locale }}
+            {{ currentLang }}
           </a>
 
           <div class="dropdown-menu dropdown-menu-right">
             <a
               href="#"
               :class="[
-                                $i18n.locale == 'en' ? 'active' : '',
+                               currentLang == 'en' ? 'active' : '',
                                 'dropdown-item english '
                             ]"
-              @click="$i18n.locale = 'en'"
+              @click="changLocalLang('en')"
             >
-              <img src="/assets/dashboard/images/lang/gb.png" class="img-flag" alt />
+              <img src="/assets/dashboard/global/images/lang/gb.png" class="img-flag" alt />
               English
             </a>
             <a
               href="#"
               :class="[
-                                $i18n.locale == 'ar' ? 'active' : '',
+                                currentLang== 'ar' ? 'active' : '',
                                 'dropdown-item english '
                             ]"
-              @click="$i18n.locale = 'ar'"
+              @click="changLocalLang('ar')"
             >
-              <img src="/assets/dashboard/images/lang/ar.png" class="img-flag" alt />
+              <img src="/assets/dashboard/global/images/lang/ar.png" class="img-flag" alt />
               Arabic
             </a>
           </div>
         </li>
 
-        <li class="nav-item dropdown">
-          <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-            <i class="icon-bubbles4"></i>
-            <span class="d-md-none ml-2">Messages</span>
-            <span class="badge badge-mark border-pink-400 ml-auto ml-md-0"></span>
-          </a>
-
-          <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
-            <div class="dropdown-content-header">
-              <span class="font-weight-semibold">Messages</span>
-              <a href="#" class="text-default">
-                <i class="icon-compose"></i>
-              </a>
-            </div>
-
-            <div class="dropdown-content-body dropdown-scrollable">
-              <ul class="media-list">
-                <li class="media">
-                  <div class="mr-3 position-relative">
-                    <img
-                      src="/assets/dashboard/images/placeholders/placeholder.jpg"
-                      width="36"
-                      height="36"
-                      class="rounded-circle"
-                      alt
-                    />
-                  </div>
-
-                  <div class="media-body">
-                    <div class="media-title">
-                      <a href="#">
-                        <span class="font-weight-semibold">James Alexander</span>
-                        <span class="text-muted float-right font-size-sm">04:58</span>
-                      </a>
-                    </div>
-
-                    <span class="text-muted">
-                      who knows, maybe that would be the
-                      best thing for me...
-                    </span>
-                  </div>
-                </li>
-
-                <li class="media">
-                  <div class="mr-3 position-relative">
-                    <img
-                      src="/assets/dashboard/images/placeholders/placeholder.jpg"
-                      width="36"
-                      height="36"
-                      class="rounded-circle"
-                      alt
-                    />
-                  </div>
-
-                  <div class="media-body">
-                    <div class="media-title">
-                      <a href="#">
-                        <span class="font-weight-semibold">Margo Baker</span>
-                        <span class="text-muted float-right font-size-sm">12:16</span>
-                      </a>
-                    </div>
-
-                    <span class="text-muted">
-                      That was something he was unable to
-                      do because...
-                    </span>
-                  </div>
-                </li>
-
-                <li class="media">
-                  <div class="mr-3">
-                    <img
-                      src="/assets/dashboard/images/placeholders/placeholder.jpg"
-                      width="36"
-                      height="36"
-                      class="rounded-circle"
-                      alt
-                    />
-                  </div>
-                  <div class="media-body">
-                    <div class="media-title">
-                      <a href="#">
-                        <span class="font-weight-semibold">Jeremy Victorino</span>
-                        <span class="text-muted float-right font-size-sm">22:48</span>
-                      </a>
-                    </div>
-
-                    <span class="text-muted">
-                      But that would be extremely
-                      strained and suspicious...
-                    </span>
-                  </div>
-                </li>
-
-                <li class="media">
-                  <div class="mr-3">
-                    <img
-                      src="/assets/dashboard/images/placeholders/placeholder.jpg"
-                      width="36"
-                      height="36"
-                      class="rounded-circle"
-                      alt
-                    />
-                  </div>
-                  <div class="media-body">
-                    <div class="media-title">
-                      <a href="#">
-                        <span class="font-weight-semibold">Beatrix Diaz</span>
-                        <span class="text-muted float-right font-size-sm">Tue</span>
-                      </a>
-                    </div>
-
-                    <span class="text-muted">
-                      What a strenuous career it is that
-                      I've chosen...
-                    </span>
-                  </div>
-                </li>
-
-                <li class="media">
-                  <div class="mr-3">
-                    <img
-                      src="/assets/dashboard/images/placeholders/placeholder.jpg"
-                      width="36"
-                      height="36"
-                      class="rounded-circle"
-                      alt
-                    />
-                  </div>
-                  <div class="media-body">
-                    <div class="media-title">
-                      <a href="#">
-                        <span class="font-weight-semibold">Richard Vango</span>
-                        <span class="text-muted float-right font-size-sm">Mon</span>
-                      </a>
-                    </div>
-
-                    <span class="text-muted">
-                      Other travelling salesmen live a
-                      life of luxury...
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="dropdown-content-footer bg-light">
-              <a href="#" class="text-grey mr-auto">All messages</a>
-              <div>
-                <a href="#" class="text-grey" data-popup="tooltip" title="Mark all as read">
-                  <i class="icon-radio-unchecked"></i>
-                </a>
-                <a href="#" class="text-grey ml-2" data-popup="tooltip" title="Settings">
-                  <i class="icon-cog3"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
+  
 
         <li class="nav-item dropdown dropdown-user">
           <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
             <img
-              src="/assets/dashboard/images/placeholders/placeholder.jpg"
+              src="/assets/dashboard/global/images/placeholders/placeholder.jpg"
               class="rounded-circle"
               alt
             />
@@ -288,9 +130,20 @@
 </template>
 
 <script>
+import AppStorage from "../helpers/AppStorage";
 export default {
   data() {
-    return { langs: ["en", "ar"], currentLang: this.$i18n.locale };
+    return { currentLang: AppStorage.get("lang") };
+  },
+  methods: {
+    changLocalLang(selectlang) {
+     this.currentLang = selectlang;
+      this.$i18n.locale = selectlang;
+      AppStorage.store('lang',selectlang);
+      EventBus.$emit("reload",this.currentLang)
+     
+ 
+    },
   },
 };
 </script>

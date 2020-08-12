@@ -1,6 +1,7 @@
 <?php
 
 use App\Project;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-route::view("/", "home");
-route::view("/{any}", "home");
-route::view("/{any}/{any1}", "home");
+
+        route::view("/", "home");
+        route::view("/{any}", "home");
+        route::view("/{any}/{any1}", "home");
+      
+
+  

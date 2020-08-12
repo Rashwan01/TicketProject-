@@ -1,42 +1,39 @@
 <?php
 
 namespace App;
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laratrust\Traits\LaratrustUserTrait;
+class User extends Authenticatable implements JWTSubject
 {
+    use LaratrustUserTrait;
     use Notifiable;
+    protected $fillable = ["name","email","password","username"];
+    // Rest omitted for brevity
+
+    public function setPasswordAttribute($value)
+    {
+
+        return $this->attributes['password'] = bcrypt($value);
+    }
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
     /**
-     * The attributes that are mass assignable.
+     * Return a key value array, containing any custom claims to be added to the JWT.
      *
-     * @var array
+     * @return array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    public function project(){
-        return $this->hasMany(project::class);
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
