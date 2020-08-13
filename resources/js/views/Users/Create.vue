@@ -7,7 +7,12 @@
       </div>
 
       <div class="card-body">
-        <form action="#" @submit.prevent="onSubmit"  @keydown="form.errors.clear($event.target.name)" @change="form.errors.clear($event.target.name)">
+        <form
+          action="#"
+          @submit.prevent="onSubmit"
+          @keydown="form.errors.clear($event.target.name)"
+          @change="form.errors.clear($event.target.name)"
+        >
           <fieldset class="mb-3">
             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{$t("inputs.name")}}</label>
@@ -24,7 +29,7 @@
             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{$t("inputs.email")}}</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" name="email"  v-model="form.email" />
+                <input type="text" class="form-control" name="email" v-model="form.email" />
                 <span
                   class="form-text text-danger"
                   v-if="form.errors.has('email')"
@@ -36,7 +41,13 @@
             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{$t("inputs.username")}}</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" name="username"  v-model="form.username" autocomplete="username" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  v-model="form.username"
+                  autocomplete="username"
+                />
                 <span
                   class="form-text text-danger"
                   v-if="form.errors.has('username')"
@@ -47,7 +58,13 @@
             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{$t("inputs.password")}}</label>
               <div class="col-lg-10">
-                <input type="password" class="form-control" name="password" autocomplete="new-password"  v-model="form.password"/>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  autocomplete="new-password"
+                  v-model="form.password"
+                />
                 <span
                   class="form-text text-danger"
                   v-if="form.errors.has('password')"
@@ -59,10 +76,14 @@
               <label class="col-form-label col-lg-2">{{$t("inputs.user_role")}}</label>
               <div class="col-lg-10">
                 <select class="form-control" name="role_id" v-model="form.role_id">
-                  <option  selected >{{$t("inputs.choose")}}</option>
-                  <option :value="role.id" v-for="(role,index) in roles" :key="index">{{role.display_name}}</option>
+                  <option selected>{{$t("inputs.choose")}}</option>
+                  <option
+                    :value="role.id"
+                    v-for="(role,index) in roles"
+                    :key="index"
+                  >{{role.display_name}}</option>
                 </select>
-                 <span
+                <span
                   class="form-text text-danger"
                   v-if="form.errors.has('role_id')"
                   v-text="form.errors.get('role_id')"
@@ -71,7 +92,7 @@
             </div>
           </fieldset>
           <div class="text-right">
-            <button type="submit" class="btn btn-primary"  :disabled="form.errors.any()">
+            <button type="submit" class="btn btn-primary" :disabled="form.errors.any()">
               {{$t("buttons.save")}}
               <i class="icon-paperplane ml-2"></i>
             </button>
@@ -90,26 +111,30 @@ import Form from "../..//helpers/Form";
 export default {
   data() {
     return {
-        roles:"",
-        form: new Form({
+      roles: "",
+      form: new Form({
         name: "",
         email: "",
-        username:"",
-        password:"",
-        role_id:""
+        username: "",
+        password: "",
+        role_id: "",
       }),
     };
   },
-  created(){
- axios.get("/api/users/create")
-      .then(res=>{this.roles = res.data.roles});
-     
+  created() {
+    this.fetchRoles();
+    EventBus.$on("reload", () => this.onSubmit());
   },
-methods:{
-onSubmit(){
-  this.form.post("/api/users");
-}
-},
+  methods: {
+    onSubmit() {
+      this.form.post("/api/users");
+    },
+    fetchRoles() {
+      axios.get("/api/users/create").then((res) => {
+        this.roles = res.data.roles;
+      });
+    },
+  },
   components: {
     BreadCrumb,
   },

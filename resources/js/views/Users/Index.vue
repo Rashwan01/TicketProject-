@@ -87,8 +87,15 @@ export default {
     };
   },
   created(){
- axios.get("/api/users")
+	    this.fetchData();
+    EventBus.$on("reload", () => this.fetchData());
+
+  },
+  methods:{
+	  fetchData(){
+		   axios.get("/api/users")
       .then(res=>this.users = res.data.data );
+	  }
   },
 
   components: {

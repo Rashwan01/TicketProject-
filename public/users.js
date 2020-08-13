@@ -100,9 +100,19 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get("/api/users").then(function (res) {
-      return _this.users = res.data.data;
+    this.fetchData();
+    EventBus.$on("reload", function () {
+      return _this.fetchData();
     });
+  },
+  methods: {
+    fetchData: function fetchData() {
+      var _this2 = this;
+
+      axios.get("/api/users").then(function (res) {
+        return _this2.users = res.data.data;
+      });
+    }
   },
   components: {
     BreadCrumb: _layouts_Breadcrumb__WEBPACK_IMPORTED_MODULE_0__["default"]

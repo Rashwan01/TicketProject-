@@ -97,6 +97,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -115,13 +136,21 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get("/api/users/create").then(function (res) {
-      _this.roles = res.data.roles;
+    this.fetchRoles();
+    EventBus.$on("reload", function () {
+      return _this.onSubmit();
     });
   },
   methods: {
     onSubmit: function onSubmit() {
       this.form.post("/api/users");
+    },
+    fetchRoles: function fetchRoles() {
+      var _this2 = this;
+
+      axios.get("/api/users/create").then(function (res) {
+        _this2.roles = res.data.roles;
+      });
     }
   },
   components: {
