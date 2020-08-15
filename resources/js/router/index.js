@@ -25,17 +25,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "users" */ "../views/Users/index"),
     beforeEnter: Auth,
-    children: [
-      {
-        path: "create",
-        name: "users.create",
-        component: () =>
-          import(
-            /* webpackChunkName: "users-create" */ "../views/Users/Create"
-          ),
-        beforeEnter: Auth,
-      },
-    ],
+  },
+  {
+    path: "/users/create",
+    name: "users.create",
+    component: () =>
+      import(/* webpackChunkName: "users-create" */ "../views/Users/Create"),
+    beforeEnter: Auth,
+  },
+  {
+    path: "/users/edit/:username",
+    name: "users.edit",
+    component: () =>
+      import(/* webpackChunkName: "users-create" */ "../views/Users/Edit"),
+    beforeEnter: Auth,
   },
 ];
 

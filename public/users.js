@@ -10,6 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_Breadcrumb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/Breadcrumb */ "./resources/js/layouts/Breadcrumb.vue");
+/* harmony import */ var _helpers_Notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/Notifications */ "./resources/js/helpers/Notifications.js");
+//
 //
 //
 //
@@ -91,10 +93,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: ''
+      users: ""
     };
   },
   created: function created() {
@@ -111,6 +114,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/users").then(function (res) {
         return _this2.users = res.data.data;
+      });
+    },
+    destroy: function destroy(index, username) {
+      var _this3 = this;
+
+      axios["delete"]("/api/users/".concat(username)).then(function (res) {
+        _this3.users.splice(index, 1);
+
+        _helpers_Notifications__WEBPACK_IMPORTED_MODULE_1__["default"].push("User Deleted", "Success", "success");
       });
     }
   },
@@ -144,94 +156,149 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c(
-              "div",
-              { staticClass: "content" },
-              [
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "div",
-                    { staticClass: "card-header header-elements-inline" },
-                    [
-                      _c("h5", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(_vm.$t("tabels.users")))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "header-elements" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-sm btn-primary ",
-                              attrs: { to: { name: "users.create" } }
-                            },
-                            [_vm._v(_vm._s(_vm.$t("buttons.add")))]
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "table-responsive" }, [
-                    _c("table", { staticClass: "table" }, [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v(_vm._s(_vm.$t("tabels.id")))]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v(_vm._s(_vm.$t("tabels.name")))]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v(_vm._s(_vm.$t("tabels.username")))]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v(_vm._s(_vm.$t("tabels.email")))]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v(_vm._s(_vm.$t("tabels.role")))]),
-                          _vm._v(" "),
-                          _vm._m(0)
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.users, function(user, index) {
-                          return _c("tr", { key: index }, [
-                            _c("td", [_vm._v(_vm._s(user.id))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.name))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v(_vm._s(user.username))
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.email))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-success" },
-                                [_vm._v(_vm._s(user.role))]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(1, true)
-                          ])
-                        }),
-                        0
-                      )
-                    ])
-                  ])
-                ]),
+            _c("div", { staticClass: "content" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header header-elements-inline" },
+                  [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(_vm.$t("tabels.users")))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "header-elements" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            attrs: { to: { name: "users.create" } }
+                          },
+                          [
+                            _c("i", { staticClass: "icon-add mr-2" }),
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.$t("buttons.add")) +
+                                "\n                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
                 _vm._v(" "),
-                _c("router-view")
-              ],
-              1
-            )
+                _c("div", { staticClass: "card-body" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v(_vm._s(_vm.$t("tabels.id")))]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v(_vm._s(_vm.$t("tabels.name")))]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v(_vm._s(_vm.$t("tabels.username")))]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v(_vm._s(_vm.$t("tabels.email")))]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v(_vm._s(_vm.$t("tabels.role")))]),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            staticClass: "text-center",
+                            staticStyle: { width: "30px" }
+                          },
+                          [_vm._v(_vm._s(_vm.$t("tabels.actions")))]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.users, function(user, index) {
+                        return _c("tr", { key: index }, [
+                          _c("td", [_vm._v(_vm._s(user.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.username))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.email))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("span", { staticClass: "badge badge-success" }, [
+                              _vm._v(_vm._s(user.role))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center" }, [
+                            _c(
+                              "div",
+                              { staticClass: "list-icons" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary btn-sm legitRipple",
+                                    attrs: {
+                                      type: "button",
+                                      to: {
+                                        name: "users.edit",
+                                        params: { username: user.username }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "icon-pencil7 mr-2"
+                                    }),
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.$t("buttons.edit")) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-danger btn-sm legitRipple",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.destroy(index, user.username)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", { staticClass: "icon-trash mr-2" }),
+                                    _vm._v(
+                                      "\n                          " +
+                                        _vm._s(_vm.$t("buttons.delete")) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ])
+            ])
           ])
         ])
       ])
@@ -239,54 +306,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "th",
-      { staticClass: "text-center", staticStyle: { width: "30px" } },
-      [_c("i", { staticClass: "icon-menu-open2" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center" }, [
-      _c("div", { staticClass: "list-icons" }, [
-        _c("div", { staticClass: "dropdown" }, [
-          _c(
-            "a",
-            {
-              staticClass: "list-icons-item",
-              attrs: { href: "#", "data-toggle": "dropdown" }
-            },
-            [_c("i", { staticClass: "icon-menu9" })]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "icon-file-pdf" }),
-              _vm._v(" Export to .pdf")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "icon-file-excel" }),
-              _vm._v(" Export to .csv")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "icon-file-word" }),
-              _vm._v(" Export to .doc")
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

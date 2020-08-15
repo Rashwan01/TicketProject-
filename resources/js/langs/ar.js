@@ -7,6 +7,7 @@ export default {
     Home: "الصفحه الرئيسيه",
     users: "المستخدمين",
     add_new_user: "أضافه مستخدم جديد",
+    edit_user: "تعديل بيانات مستخدم ",
   },
   inputs: {
     name: "الاسم",
@@ -21,6 +22,7 @@ export default {
     update: "تحديث",
     edit: "تعديل",
     add: "أضافه",
+    delete: "حذف",
   },
   tabels: {
     users: "المستخدمين",
@@ -30,5 +32,6 @@ export default {
     username: "أسم المستخدم",
     password: "كلمه المرور",
     role: "الدور",
+    actions:"الاجراءات"
   },
 };

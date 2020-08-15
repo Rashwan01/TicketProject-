@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
         route::view("/", "home");
         route::view("/{any}", "home");
         route::view("/{any}/{any1}", "home");
+        route::view("/{any}/{any1}/{any2}", "home");
       
 
   

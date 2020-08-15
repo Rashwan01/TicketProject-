@@ -17,6 +17,21 @@ return [
             'tickets' => 'c,r,u,d',
           
         ],
+        'callCenter' => [
+            'users' => 'c,r,u',
+            'tickets' => 'r',
+
+        ],
+        'client' => [
+      
+            'tickets' => 'c,r,u',
+
+        ],
+        'developer' => [
+
+            'tickets' => 'c,r,u',
+
+        ],
       
     ],
 

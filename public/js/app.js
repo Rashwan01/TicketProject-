@@ -22398,9 +22398,12 @@ var Form = /*#__PURE__*/function () {
    * @param {object} data
    */
   function Form(data) {
+    var clear = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
     _classCallCheck(this, Form);
 
     this.originalData = data;
+    this.clear = clear;
 
     for (var field in data) {
       this[field] = data[field];
@@ -22508,8 +22511,11 @@ var Form = /*#__PURE__*/function () {
   }, {
     key: "onSuccess",
     value: function onSuccess(response) {
-      _Notifications__WEBPACK_IMPORTED_MODULE_1__["default"].push(response.data.message, "success", "success");
-      this.reset();
+      _Notifications__WEBPACK_IMPORTED_MODULE_1__["default"].push(response.data.msg, "success", "success");
+
+      if (this.clear == true) {
+        this.reset();
+      }
     }
     /**
      * Handle a failed form submission.
@@ -22774,7 +22780,8 @@ __webpack_require__.r(__webpack_exports__);
   custom: {
     Home: "الصفحه الرئيسيه",
     users: "المستخدمين",
-    add_new_user: "أضافه مستخدم جديد"
+    add_new_user: "أضافه مستخدم جديد",
+    edit_user: "تعديل بيانات مستخدم "
   },
   inputs: {
     name: "الاسم",
@@ -22788,7 +22795,8 @@ __webpack_require__.r(__webpack_exports__);
     save: "حفظ",
     update: "تحديث",
     edit: "تعديل",
-    add: "أضافه"
+    add: "أضافه",
+    "delete": "حذف"
   },
   tabels: {
     users: "المستخدمين",
@@ -22797,7 +22805,8 @@ __webpack_require__.r(__webpack_exports__);
     email: "البريد الالكتروني",
     username: "أسم المستخدم",
     password: "كلمه المرور",
-    role: "الدور"
+    role: "الدور",
+    actions: "الاجراءات"
   }
 });
 
@@ -22943,7 +22952,8 @@ __webpack_require__.r(__webpack_exports__);
   custom: {
     Home: "Home",
     users: "users",
-    add_new_user: "Add new User"
+    add_new_user: "Add new User",
+    edit_user: "Edit User"
   },
   inputs: {
     name: "Name",
@@ -22957,7 +22967,8 @@ __webpack_require__.r(__webpack_exports__);
     save: "Save",
     update: "Update",
     edit: "Edit",
-    add: "Add"
+    add: "Add",
+    "delete": "Delete"
   },
   tabels: {
     users: "Users",
@@ -22965,7 +22976,8 @@ __webpack_require__.r(__webpack_exports__);
     email: "Email",
     username: "Username",
     password: "Password",
-    user_role: "Role"
+    user_role: "Role",
+    actions: "Actions"
   }
 });
 
@@ -23322,15 +23334,21 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() | users */ "users").then(__webpack_require__.bind(null, /*! ../views/Users/index */ "./resources/js/views/Users/index.vue"));
   },
-  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"],
-  children: [{
-    path: "create",
-    name: "users.create",
-    component: function component() {
-      return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Users/Create */ "./resources/js/views/Users/Create.vue"));
-    },
-    beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }]
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/users/create",
+  name: "users.create",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Users/Create */ "./resources/js/views/Users/Create.vue"));
+  },
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/users/edit/:username",
+  name: "users.edit",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Users/Edit */ "./resources/js/views/Users/Edit.vue"));
+  },
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
 }]; // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.

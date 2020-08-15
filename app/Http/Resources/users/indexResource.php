@@ -17,8 +17,8 @@ class indexResource extends JsonResource
         return [
             "id"=>$this->id,
             "name"=>$this->name,
-            "username"=>$this->name,
-            "email"=>$this->name,
+            "username"=>$this->username,
+            "email"=>$this->email,
             "role"=>$this->roles->first()->display_name,
         ];
     }

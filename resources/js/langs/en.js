@@ -139,6 +139,7 @@ export default {
     Home: "Home",
     users: "users",
     add_new_user: "Add new User",
+    edit_user: "Edit User",
   },
   inputs: {
     name: "Name",
@@ -153,6 +154,7 @@ export default {
     update: "Update",
     edit: "Edit",
     add: "Add",
+    delete: "Delete",
   },
   tabels: {
     users: "Users",
@@ -161,6 +163,7 @@ export default {
     username: "Username",
     password: "Password",
     user_role: "Role",
+    actions: "Actions",
   },
 };
 

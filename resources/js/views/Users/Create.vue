@@ -75,18 +75,18 @@
             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{$t("inputs.user_role")}}</label>
               <div class="col-lg-10">
-                <select class="form-control" name="role_id" v-model="form.role_id">
+                <select class="form-control" name="role" v-model="form.role">
                   <option selected>{{$t("inputs.choose")}}</option>
                   <option
-                    :value="role.id"
+                    :value="role.display_name"
                     v-for="(role,index) in roles"
                     :key="index"
                   >{{role.display_name}}</option>
                 </select>
                 <span
                   class="form-text text-danger"
-                  v-if="form.errors.has('role_id')"
-                  v-text="form.errors.get('role_id')"
+                  v-if="form.errors.has('role')"
+                  v-text="form.errors.get('role')"
                 ></span>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default {
         email: "",
         username: "",
         password: "",
-        role_id: "",
+        role: "",
       }),
     };
   },

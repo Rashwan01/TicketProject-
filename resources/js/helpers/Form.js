@@ -6,14 +6,16 @@ class Form {
    *
    * @param {object} data
    */
-  constructor(data) {
+  constructor(data,clear=true) {
     this.originalData = data;
+    this.clear = clear;
 
     for (let field in data) {
       this[field] = data[field];
     }
 
     this.errors = new Errors();
+
   }
 
   /**
@@ -83,12 +85,13 @@ class Form {
    * @param {string} url
    */
   submit(requestType, url) {
+  
     return axios[requestType](url, this.data())
       .then((response) => {
         this.onSuccess(response);
       })
       .catch((error) => {
-          this.onFail(error.response.data.errors);
+        this.onFail(error.response.data.errors);
       });
   }
 
@@ -97,11 +100,12 @@ class Form {
    *
    * @param {object} data
    */
-    onSuccess(response) {
-           Notification.push(response.data.message,"success","success");
+  onSuccess(response) {
+
+    Notification.push(response.data.msg, "success", "success");
+    if (this.clear == true) {
       this.reset();
- 
-   
+    }
   }
 
   /**
