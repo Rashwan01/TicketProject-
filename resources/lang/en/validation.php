@@ -146,6 +146,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "user_id"                  => "user",
+        "image"                  => "image"
+    ],
 
 ];

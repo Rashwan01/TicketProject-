@@ -1,15 +1,18 @@
 <?php
 
 namespace App;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+
+use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 class User extends Authenticatable implements JWTSubject
 {
     use LaratrustUserTrait;
     use Notifiable;
-    protected $fillable = ["name","email","password","username"];
+    protected $fillable = ["name", "email", "password", "username","image"];
     // Rest omitted for brevity
 
     public function setPasswordAttribute($value)
@@ -38,8 +41,17 @@ class User extends Authenticatable implements JWTSubject
     }
     public function getRouteKeyName()
     {
-     return "username";   
+        return "username";
     }
-        
+    static  function FiltarData(Request $request)
+    {
+      
+        if ($request->role) {
+            
+            return Role::whereName($request->role)->first()->users;
+        }
+        return User::all();
+    }
     
+   
 }

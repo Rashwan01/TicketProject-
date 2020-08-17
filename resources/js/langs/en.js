@@ -138,8 +138,11 @@ export default {
   custom: {
     Home: "Home",
     users: "users",
+    tickets: "tickets",
     add_new_user: "Add new User",
+    add_new_tickets: "Add new Tickets",
     edit_user: "Edit User",
+    edit_tickets: "Edit Tickets",
   },
   inputs: {
     name: "Name",
@@ -148,6 +151,11 @@ export default {
     password: "Password",
     user_role: "Role",
     choose: "Choose",
+    title: "title",
+    description: "description",
+    user: "users",
+    choose_image: "choose image",
+    image: "image",
   },
   buttons: {
     save: "Save",
@@ -157,12 +165,17 @@ export default {
     delete: "Delete",
   },
   tabels: {
+    id: "id",
     users: "Users",
+    user: "user",
     name: "Name",
     email: "Email",
     username: "Username",
     password: "Password",
     user_role: "Role",
+    title: "title",
+    description: "description",
+    status: "status",
     actions: "Actions",
   },
 };

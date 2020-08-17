@@ -10,7 +10,14 @@
         "icon": "icon-users",
         "text": "users",
         "subItems": []
+    },
+    {
+        "url": "/tickets",
+        "icon": "icon-users",
+        "text": "tickets",
+        "subItems": []
     }
+
 
 
 ]

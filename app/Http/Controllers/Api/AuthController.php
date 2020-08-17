@@ -90,18 +90,4 @@ class AuthController extends Controller
             "user" => auth()->user()->name
         ]);
     }
-    public function notifications()
-    {
-        return [
-            "read" => notifications::collection(auth()->user()->readNotifications),
-            "unread" => notifications::collection(auth()->user()->UnreadNotifications),
-
-
-        ];
-    }
-
-    public function markAsRead(Request $request)
-    {
-        Auth()->user()->notifications->where("id", $request->id)->markAsRead();
-    }
 }

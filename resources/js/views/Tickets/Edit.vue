@@ -3,95 +3,60 @@
     <!-- Form inputs -->
     <div class="card">
       <div class="card-header header-elements-inline">
-        <h5 class="card-title">{{$t("custom.add_new_user")}}</h5>
+        <h5 class="card-title">{{$t("custom.edit_tickets")}}</h5>
       </div>
 
       <div class="card-body">
         <form
           action="#"
-          @submit.prevent="onSubmit"
+          @submit.prevent="update"
           @keydown="form.errors.clear($event.target.name)"
           @change="form.errors.clear($event.target.name)"
         >
           <fieldset class="mb-3">
             <div class="form-group row">
-              <label class="col-form-label col-lg-2">{{$t("inputs.name")}}</label>
+              <label class="col-form-label col-lg-2">{{$t("inputs.title")}}</label>
               <div class="col-lg-10">
-                <input type="text" class="form-control" name="name" v-model="form.name" />
+                <input type="text" class="form-control" name="title" v-model="form.title" />
                 <span
                   class="form-text text-danger"
-                  v-if="form.errors.has('name')"
-                  v-text="form.errors.get('name')"
+                  v-if="form.errors.has('title')"
+                  v-text="form.errors.get('title')"
                 ></span>
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-form-label col-lg-2">{{$t("inputs.email")}}</label>
-              <div class="col-lg-10">
-                <input type="text" class="form-control" name="email" v-model="form.email" />
-                <span
-                  class="form-text text-danger"
-                  v-if="form.errors.has('email')"
-                  v-text="form.errors.get('email')"
-                ></span>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-form-label col-lg-2">{{$t("inputs.username")}}</label>
+              <label class="col-form-label col-lg-2">{{$t("inputs.description")}}</label>
               <div class="col-lg-10">
                 <input
                   type="text"
                   class="form-control"
-                  name="username"
-                  v-model="form.username"
-                  autocomplete="username"
+                  name="description"
+                  v-model="form.description"
                 />
                 <span
                   class="form-text text-danger"
-                  v-if="form.errors.has('username')"
-                  v-text="form.errors.get('username')"
+                  v-if="form.errors.has('description')"
+                  v-text="form.errors.get('description')"
                 ></span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-form-label col-lg-2">{{$t("inputs.password")}}</label>
+              <label class="col-form-label col-lg-2">{{$t("inputs.user")}}</label>
               <div class="col-lg-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  autocomplete="new-password"
-                  v-model="form.password"
-                />
-                <span
-                  class="form-text text-danger"
-                  v-if="form.errors.has('password')"
-                  v-text="form.errors.get('password')"
-                ></span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-form-label col-lg-2">{{$t("inputs.user_role")}}</label>
-              <div class="col-lg-10">
-                <select class="form-control" name="role" v-model="form.role">
-                  <option selected>{{$t("inputs.choose")}}</option>
-                  <option
-                    :value="role.display_name"
-                    v-for="(role,index) in roles"
-                    :key="index"
-                  >{{role.display_name}}</option>
+                <select class="form-control" name="user" v-model="form.user_id">
+                  <option >{{$t("inputs.choose")}}</option>
+                  <option :value="user.id" v-for="(user,index) in users" :key="index">{{user.name}}</option>
                 </select>
                 <span
                   class="form-text text-danger"
-                  v-if="form.errors.has('role')"
-                  v-text="form.errors.get('role')"
+                  v-if="form.errors.has('user_id')"
+                  v-text="form.errors.get('user_id')"
                 ></span>
               </div>
             </div>
-            
-            <div class="form-group row">
+             <div class="form-group row">
               <label class="col-form-label col-lg-2">{{ $t("inputs.image") }}</label>
               <div class="col-lg-10">
                 <div class="uniform-uploader">
@@ -138,23 +103,20 @@ import Form from "../..//helpers/Form";
 export default {
   data() {
     return {
-      roles: "",
-      form: new Form({
-        name: "",
-        email: "",
-        username: "",
-        password: "",
-        role: "",
-        image:"", 
-      }),
+      users:"",
+      form: new Form({}, false),
     };
   },
   created() {
-    this.fetchRoles();
-    EventBus.$on("reload", () => this.onSubmit());
+    this.getTicket();
+    this.fetchClient();
+    EventBus.$on("reload", () => {
+      
+      this.update()
+      });
   },
   methods: {
-     uploadAvatar(e) {
+       uploadAvatar(e) {
       let file = e.target.files[0];
       let reader = new FileReader();
 
@@ -169,15 +131,19 @@ export default {
       }
     },
     getAvatar() {
-      let photo = this.form.image.length > 100 ? this.form.image : "";
-      return photo;
+      return this.form.image ? this.form.image : "";
+     
     },
-    onSubmit() {
-      this.form.post("/api/users");
+    update() {
+      this.form.put(`/api/tickets/${this.$route.params.slug}`);
     },
-    fetchRoles() {
-      axios.get("/api/users/create").then((res) => {
-        this.roles = res.data.roles;
+   fetchClient() {
+      axios.get("/api/users?role=client").then((res) => (this.users = res.data.data));
+    },
+
+    getTicket() {
+      axios.get(`/api/tickets/${this.$route.params.slug}`).then((res) => {
+        this.form = new Form(res.data.data, false);
       });
     },
   },

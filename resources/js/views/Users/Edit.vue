@@ -76,7 +76,7 @@
               <label class="col-form-label col-lg-2">{{$t("inputs.user_role")}}</label>
               <div class="col-lg-10">
                 <select class="form-control" name="role" v-model="form.role">
-                  <option >{{$t("inputs.choose")}}</option>
+                  <option>{{$t("inputs.choose")}}</option>
                   <option
                     :value="role.display_name"
                     v-for="(role,index) in roles"
@@ -88,6 +88,32 @@
                   v-if="form.errors.has('role')"
                   v-text="form.errors.get('role')"
                 ></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-form-label col-lg-2">{{ $t("inputs.image") }}</label>
+              <div class="col-lg-10">
+                <div class="uniform-uploader">
+                  <input
+                    type="file"
+                    name="image"
+                    class="form-control-uniform-custom"
+                    @change="uploadAvatar"
+                  />
+                  <span class="filename" style="user-select: none;">{{ $t("inputs.choose_image") }}</span>
+                  <span
+                    class="action btn bg-blue legitRipple"
+                    style="user-select: none;"
+                  >{{ $t("inputs.choose_image") }}</span>
+                </div>
+                <span
+                  class="form-text text-danger"
+                  v-if="form.errors.has('image')"
+                  v-text="form.errors.get('image')"
+                ></span>
+                <div class="avatar img-fluid img-circle" style="margin-top:10px">
+                  <img :src="getAvatar()" />
+                </div>
               </div>
             </div>
           </fieldset>
@@ -112,19 +138,34 @@ export default {
   data() {
     return {
       roles: "",
-     
-      form: new Form({
 
-      },false),
+      form: new Form({}, false),
     };
   },
   created() {
-
     this.getUser();
     this.fetchRoles();
     EventBus.$on("reload", () => this.onSubmit());
   },
   methods: {
+         uploadAvatar(e) {
+      let file = e.target.files[0];
+      let reader = new FileReader();
+
+      if (file["size"] < 2111775) {
+        reader.onloadend = (file) => {
+          //console.log('RESULT', reader.result)
+          this.form.image = reader.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("File size can not be bigger than 2 MB");
+      }
+    },
+    getAvatar() {
+      return this.form.image ? this.form.image : "";
+     
+    },
     update() {
       this.form.put(`/api/users/${this.$route.params.username}`);
     },
@@ -133,12 +174,11 @@ export default {
         this.roles = res.data.roles;
       });
     },
-    getUser(){
-         axios.get(`/api/users/${this.$route.params.username}`)
-              .then(res=>{this.form = new Form(res.data.data,false);
-            });
-         
-    }
+    getUser() {
+      axios.get(`/api/users/${this.$route.params.username}`).then((res) => {
+        this.form = new Form(res.data.data, false);
+      });
+    },
   },
   components: {
     BreadCrumb,

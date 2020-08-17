@@ -20,6 +20,7 @@ class indexResource extends JsonResource
             "username"=>$this->username,
             "email"=>$this->email,
             "role"=>$this->roles->first()->display_name,
+            "image"=>$this->image,
         ];
     }
 }

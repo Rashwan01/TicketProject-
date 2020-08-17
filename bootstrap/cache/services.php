@@ -43,6 +43,7 @@
     39 => 'App\\Providers\\RouteServiceProvider',
     40 => 'MartinLindhe\\VueInternationalizationGenerator\\GeneratorProvider',
     41 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    42 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'eager' => 
   array (
@@ -75,6 +76,7 @@
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'MartinLindhe\\VueInternationalizationGenerator\\GeneratorProvider',
     28 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    29 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'deferred' => 
   array (

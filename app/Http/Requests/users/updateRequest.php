@@ -30,6 +30,8 @@ class updateRequest extends FormRequest
             "username"=> "required|unique:users,username,$this->id  ",
             "password"=> "sometimes|min:6",
             "role"=> "required",
+            "image" => "sometimes",
+
         ];
     }
 }

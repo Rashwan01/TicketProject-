@@ -2444,30 +2444,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      form: new _helpers_Form__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        name: "",
-        description: ""
-      })
+      charts: {}
     };
   },
+  created: function created() {
+    this.fetchChart();
+  },
   methods: {
-    pushNotification: function pushNotification() {
-      return this.$notify({
-        group: "foo",
-        type: "success",
-        title: "Important message",
-        text: "Hello user! This is a notification!",
-        closeOnClick: true
+    fetchChart: function fetchChart() {
+      var _this = this;
+
+      axios.get("/api").then(function (res) {
+        return _this.charts = res.data;
       });
-    },
-    onSubmit: function onSubmit() {
-      this.form.post("/projects");
     }
   },
   components: {
@@ -5894,19 +5915,90 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("bread-crumb"), _vm._v(" "), _vm._m(0)], 1)
+  return _c(
+    "div",
+    [
+      _c("bread-crumb"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row text-center" }, [
+                  _c("div", { staticClass: "col-4" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                      _vm._v(_vm._s(_vm.charts.users))
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-muted font-size-sm" }, [
+                      _vm._v("client")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-4" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                      _vm._v(_vm._s(_vm.charts.tickets))
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-muted font-size-sm" }, [
+                      _vm._v("tickets")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("p", [_vm._v("hello from home ")])
+    return _c(
+      "div",
+      { staticClass: "card-header bg-dark text-white header-elements-inline" },
+      [
+        _c("h6", { staticClass: "card-title" }, [_vm._v("Charts")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-elements" }, [
+          _c("div", { staticClass: "list-icons" }, [
+            _c("a", {
+              staticClass: "list-icons-item",
+              attrs: { "data-action": "collapse" }
+            })
+          ])
         ])
-      ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "icon-users2 icon-2x d-inline-block text-info" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", {
+        staticClass: "icon-point-up icon-2x d-inline-block text-warning"
+      })
     ])
   }
 ]
@@ -22226,10 +22318,10 @@ var app = new Vue({
 /*!***************************************!*\
   !*** ./resources/js/data/Navbar.json ***!
   \***************************************/
-/*! exports provided: 0, 1, default */
+/*! exports provided: 0, 1, 2, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("[{\"url\":\"/home\",\"icon\":\"icon-home4\",\"text\":\"Home\",\"subItems\":[]},{\"url\":\"/users\",\"icon\":\"icon-users\",\"text\":\"users\",\"subItems\":[]}]");
+module.exports = JSON.parse("[{\"url\":\"/home\",\"icon\":\"icon-home4\",\"text\":\"Home\",\"subItems\":[]},{\"url\":\"/users\",\"icon\":\"icon-users\",\"text\":\"users\",\"subItems\":[]},{\"url\":\"/tickets\",\"icon\":\"icon-users\",\"text\":\"tickets\",\"subItems\":[]}]");
 
 /***/ }),
 
@@ -22410,6 +22502,7 @@ var Form = /*#__PURE__*/function () {
     }
 
     this.errors = new _Errors_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    console.log(this.originalData);
   }
   /**
    * Fetch all relevant data for the form.
@@ -22781,7 +22874,10 @@ __webpack_require__.r(__webpack_exports__);
     Home: "الصفحه الرئيسيه",
     users: "المستخدمين",
     add_new_user: "أضافه مستخدم جديد",
-    edit_user: "تعديل بيانات مستخدم "
+    add_new_tickets: "أضافه تذكره جديده",
+    edit_user: "تعديل بيانات مستخدم ",
+    edit_tickets: "تعديل التذكره",
+    tickets: "التذاكر"
   },
   inputs: {
     name: "الاسم",
@@ -22789,7 +22885,12 @@ __webpack_require__.r(__webpack_exports__);
     username: "أسم المستخدم",
     password: "كلمه المرور",
     user_role: "الدور",
-    choose: "اختار"
+    choose: "اختار",
+    title: "العنوان",
+    description: "الوصف",
+    user: "المستخدم",
+    choose_image: "اختار صوره",
+    image: "صوره"
   },
   buttons: {
     save: "حفظ",
@@ -22800,13 +22901,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   tabels: {
     users: "المستخدمين",
+    user: "المستخدم",
     id: "الرقم التعريفي",
     name: "الاسم",
     email: "البريد الالكتروني",
     username: "أسم المستخدم",
     password: "كلمه المرور",
     role: "الدور",
-    actions: "الاجراءات"
+    title: "العنوان",
+    description: "الوصف",
+    actions: "الاجراءات",
+    status: "الحاله"
   }
 });
 
@@ -22952,8 +23057,11 @@ __webpack_require__.r(__webpack_exports__);
   custom: {
     Home: "Home",
     users: "users",
+    tickets: "tickets",
     add_new_user: "Add new User",
-    edit_user: "Edit User"
+    add_new_tickets: "Add new Tickets",
+    edit_user: "Edit User",
+    edit_tickets: "Edit Tickets"
   },
   inputs: {
     name: "Name",
@@ -22961,7 +23069,12 @@ __webpack_require__.r(__webpack_exports__);
     username: "Username",
     password: "Password",
     user_role: "Role",
-    choose: "Choose"
+    choose: "Choose",
+    title: "title",
+    description: "description",
+    user: "users",
+    choose_image: "choose image",
+    image: "image"
   },
   buttons: {
     save: "Save",
@@ -22971,12 +23084,17 @@ __webpack_require__.r(__webpack_exports__);
     "delete": "Delete"
   },
   tabels: {
+    id: "id",
     users: "Users",
+    user: "user",
     name: "Name",
     email: "Email",
     username: "Username",
     password: "Password",
     user_role: "Role",
+    title: "title",
+    description: "description",
+    status: "status",
     actions: "Actions"
   }
 });
@@ -23347,6 +23465,27 @@ var routes = [{
   name: "users.edit",
   component: function component() {
     return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Users/Edit */ "./resources/js/views/Users/Edit.vue"));
+  },
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/tickets",
+  name: "tickets.index",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Tickets/Index */ "./resources/js/views/Tickets/Index.vue"));
+  },
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/tickets/create",
+  name: "tickets.create",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Tickets/Create */ "./resources/js/views/Tickets/Create.vue"));
+  },
+  beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/tickets/edit/:slug",
+  name: "tickets.edit",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | users-create */ "users-create").then(__webpack_require__.bind(null, /*! ../views/Tickets/Edit */ "./resources/js/views/Tickets/Edit.vue"));
   },
   beforeEnter: _middleware_auth__WEBPACK_IMPORTED_MODULE_4__["default"]
 }]; // 3. Create the router instance and pass the `routes` option

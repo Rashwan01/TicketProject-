@@ -176,6 +176,8 @@ return [
         MartinLindhe\VueInternationalizationGenerator\GeneratorProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
+        Intervention\Image\ImageServiceProvider::class
+
 
     ],
 
@@ -232,7 +234,10 @@ return [
         'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
         'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
-        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
+        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+        'Image' => Intervention\Image\Facades\Image::class
+
+
 
     ],
 

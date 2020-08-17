@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\users;
+namespace App\Http\Requests\Ticket;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,11 @@ class storeRequest extends FormRequest
      */
     public function rules()
     {
-        
         return [
-            "name"=>"required|min:3",
-            "email"=> "required|email|unique:users",
-            "username"=> "required|unique:users,username",
-            "password"=> "required|min:6",
-            "role"=> "required",
-            "image"=> "required",
+            "title"=>"required",
+            "description"=>"required",
+            "user_id"=>"required",
+            "image"=>"required"
         ];
     }
 }

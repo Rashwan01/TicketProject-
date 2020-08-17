@@ -15,6 +15,7 @@ class Form {
     }
 
     this.errors = new Errors();
+    console.log(this.originalData);
 
   }
 

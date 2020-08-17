@@ -10,5 +10,7 @@ Route::prefix('auth')->group(function () {
         Route::post('refresh', 'AuthController@refresh');
         Route::post('me', 'AuthController@me');
 });
+Route::get("/","HomeController");
 
 Route::resource("users","Users\UserController");
+Route::resource("tickets","Tickets\TicketController");

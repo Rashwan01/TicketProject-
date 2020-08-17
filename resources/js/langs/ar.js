@@ -7,7 +7,10 @@ export default {
     Home: "الصفحه الرئيسيه",
     users: "المستخدمين",
     add_new_user: "أضافه مستخدم جديد",
+    add_new_tickets: "أضافه تذكره جديده",
     edit_user: "تعديل بيانات مستخدم ",
+    edit_tickets: "تعديل التذكره",
+    tickets: "التذاكر",
   },
   inputs: {
     name: "الاسم",
@@ -16,6 +19,11 @@ export default {
     password: "كلمه المرور",
     user_role: "الدور",
     choose: "اختار",
+    title: "العنوان",
+    description: "الوصف",
+    user: "المستخدم",
+    choose_image: "اختار صوره",
+    image: "صوره",
   },
   buttons: {
     save: "حفظ",
@@ -26,12 +34,16 @@ export default {
   },
   tabels: {
     users: "المستخدمين",
+    user: "المستخدم",
     id: "الرقم التعريفي",
     name: "الاسم",
     email: "البريد الالكتروني",
     username: "أسم المستخدم",
     password: "كلمه المرور",
     role: "الدور",
-    actions:"الاجراءات"
+    title: "العنوان",
+    description: "الوصف",
+    actions: "الاجراءات",
+    status:"الحاله",
   },
 };

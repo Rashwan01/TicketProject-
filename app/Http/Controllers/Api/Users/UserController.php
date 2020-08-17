@@ -15,9 +15,11 @@ use Illuminate\Contracts\Support\Renderable;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return indexResource::collection(User::all());
+        $users = User::FiltarData($request);
+    
+        return indexResource::collection($users);
     }
     public function create()
     {
@@ -31,13 +33,15 @@ class UserController extends Controller
     public function Store(storeRequest $request)
     {
         $data = $request->except("role_id");
+        $data['image']=uploadimage($request,"/uploads/users");
         $user = User::create($data);
         $user->attachRole($request->role);
         return response()->json(["msg" => "success"]);
     }
     public function update(updateRequest $request,User $user)
     {
-        $user->update($request->all());
+        $data['image'] = uploadimage($request, "/uploads/users");
+        $user->update($data);
         $user->roles()->detach();
         $user->attachRole($request->role);
         return response()->json(["msg" => "success"]);

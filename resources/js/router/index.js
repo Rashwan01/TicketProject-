@@ -40,6 +40,27 @@ const routes = [
       import(/* webpackChunkName: "users-create" */ "../views/Users/Edit"),
     beforeEnter: Auth,
   },
+  {
+    path: "/tickets",
+    name: "tickets.index",
+    component: () =>
+      import(/* webpackChunkName: "users-create" */ "../views/Tickets/Index"),
+    beforeEnter: Auth,
+  },
+  {
+    path: "/tickets/create",
+    name: "tickets.create",
+    component: () =>
+      import(/* webpackChunkName: "users-create" */ "../views/Tickets/Create"),
+    beforeEnter: Auth,
+  },
+  {
+    path: "/tickets/edit/:slug",
+    name: "tickets.edit",
+    component: () =>
+      import(/* webpackChunkName: "users-create" */ "../views/Tickets/Edit"),
+    beforeEnter: Auth,
+  },
 ];
 
 // 3. Create the router instance and pass the `routes` option
