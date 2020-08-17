@@ -143,7 +143,7 @@ export default {
         .then((res) => (this.users = res.data.data));
     },
     onSubmit() {
-      this.form.post("/api/tickets");
+      this.form.post("/api/tickets")
     },
   },
   components: {

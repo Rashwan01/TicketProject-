@@ -141,8 +141,10 @@ export default {
     tickets: "tickets",
     add_new_user: "Add new User",
     add_new_tickets: "Add new Tickets",
+    add_to_do: "Add New Todo ",
     edit_user: "Edit User",
     edit_tickets: "Edit Tickets",
+    all_todos: "all Todos",
   },
   inputs: {
     name: "Name",
@@ -156,6 +158,8 @@ export default {
     user: "users",
     choose_image: "choose image",
     image: "image",
+    priority: "priority",
+    date: "date",
   },
   buttons: {
     save: "Save",
@@ -177,6 +181,7 @@ export default {
     description: "description",
     status: "status",
     actions: "Actions",
+    date: "date",
   },
 };
 

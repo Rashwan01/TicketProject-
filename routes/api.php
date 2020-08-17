@@ -14,3 +14,4 @@ Route::get("/","HomeController");
 
 Route::resource("users","Users\UserController");
 Route::resource("tickets","Tickets\TicketController");
+Route::resource("todos","Todo\TodoController");

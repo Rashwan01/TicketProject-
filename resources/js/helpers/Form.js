@@ -15,7 +15,7 @@ class Form {
     }
 
     this.errors = new Errors();
-    console.log(this.originalData);
+    
 
   }
 
@@ -86,7 +86,7 @@ class Form {
    * @param {string} url
    */
   submit(requestType, url) {
-  
+   
     return axios[requestType](url, this.data())
       .then((response) => {
         this.onSuccess(response);

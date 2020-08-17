@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -51,6 +52,9 @@ class User extends Authenticatable implements JWTSubject
             return Role::whereName($request->role)->first()->users;
         }
         return User::all();
+    }
+    public function todos(){
+        return $this->hasMany(Todo::class,"owner_id");
     }
     
    

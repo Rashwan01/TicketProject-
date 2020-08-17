@@ -9,8 +9,10 @@ export default {
     add_new_user: "أضافه مستخدم جديد",
     add_new_tickets: "أضافه تذكره جديده",
     edit_user: "تعديل بيانات مستخدم ",
+    add_to_do: " أضافه todoجديده   ",
     edit_tickets: "تعديل التذكره",
     tickets: "التذاكر",
+    all_todos:"كل الtodos",
   },
   inputs: {
     name: "الاسم",
@@ -24,6 +26,8 @@ export default {
     user: "المستخدم",
     choose_image: "اختار صوره",
     image: "صوره",
+    priority: "الافضليه",
+    date: "الوقت",
   },
   buttons: {
     save: "حفظ",
@@ -44,6 +48,7 @@ export default {
     title: "العنوان",
     description: "الوصف",
     actions: "الاجراءات",
-    status:"الحاله",
+    status: "الحاله",
+    date: "التاريخ",
   },
 };
